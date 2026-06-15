@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Portfolio de Josu Gonzalez: direccion visual, fotografia, video y piezas con IA."
+    />
+    <title>Josu Gonzalez</title>
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link rel="stylesheet" href="styles.css?v=responsive-nodes-1" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#projects" aria-label="Inicio">Josu Gonzalez</a>
+      <nav class="site-nav" aria-label="Navegacion principal">
+        <a href="#projects">Projects</a>
+        <a href="#info">Info</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="project-index" id="projects" aria-label="Proyectos" data-project-index></section>
+
+      <div class="scroll-controls" aria-label="Navegación de proyectos">
+        <button class="scroll-arrow scroll-left" type="button" aria-label="Anterior">←</button>
+        <button class="scroll-arrow scroll-right" type="button" aria-label="Siguiente">→</button>
+      </div>
+
+      <section class="project-view" id="project" aria-live="polite">
+        <div class="project-view-header">
+          <button class="back-button" type="button" data-close-project>Projects</button>
+          <div>
+            <p data-project-kind>AI Film / 2026</p>
+            <h1 data-project-title>Synthetic Memory</h1>
+          </div>
+        </div>
+
+        <div class="series-grid" data-series-grid></div>
+
+        <div class="project-text">
+          <p data-project-copy>
+            Exploracion de imagen generada, textura documental y montaje para piezas cortas con una estetica entre memoria,
+            archivo y ficcion.
+          </p>
+          <dl>
+            <div>
+              <dt>Role</dt>
+              <dd data-project-role>Direction, AI workflow, edit</dd>
+            </div>
+            <div>
+              <dt>Format</dt>
+              <dd data-project-format>Loop film, stills, social cutdowns</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd data-project-status>Personal research</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="info-section" id="info">
+        <div class="info-copy">
+          <div class="info-language" lang="es">
+            <p>
+              Josu Gonzalez trabaja entre imagen real e imagen asistida por IA. Fotografia, video, direccion visual,
+              preproduccion generativa y piezas para web, social y pantalla.
+            </p>
+            <p>
+              Su practica cruza rodaje, fotografia, montaje, generacion de mundos visuales, mood films y sistemas de imagen
+              para marcas, artistas y proyectos personales.
+            </p>
+          </div>
+          <div class="info-language info-language-en" lang="en">
+            <p>
+              Josu Gonzalez works between live action and AI-assisted image making. Photography, video, visual direction,
+              generative pre-production and pieces for web, social and screen.
+            </p>
+            <p>
+              His practice moves across shooting, photography, editing, worldbuilding, mood films and image systems for
+              brands, artists and personal projects.
+            </p>
+          </div>
+        </div>
+        <nav aria-label="Contacto">
+          <a href="mailto:hola@josugonzalez.com">hola@josugonzalez.com</a>
+          <a href="https://josugonzalez.com">josugonzalez.com</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+        </nav>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© <span data-year></span> Josu Gonzalez</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
