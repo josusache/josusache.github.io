@@ -587,12 +587,81 @@ const openProject = (card) => {
   projectView.scrollTop = 0;
 };
 
+const enableProjectDragging = () => {
+  const dragThreshold = 6;
+  let activeDrag = null;
+
+  const setCardOffset = (card, x, y) => {
+    card.dataset.dragX = String(x);
+    card.dataset.dragY = String(y);
+    card.style.setProperty("--drag-x", `${x}px`);
+    card.style.setProperty("--drag-y", `${y}px`);
+  };
+
+  document.querySelectorAll(".project-card").forEach((card) => {
+    card.dataset.dragX = card.dataset.dragX || "0";
+    card.dataset.dragY = card.dataset.dragY || "0";
+
+    card.addEventListener("pointerdown", (event) => {
+      if (event.button !== 0 || projectView.classList.contains("is-open")) return;
+
+      activeDrag = {
+        card,
+        moved: false,
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        x: Number(card.dataset.dragX || 0),
+        y: Number(card.dataset.dragY || 0),
+      };
+
+      card.dataset.dragged = "false";
+      card.setPointerCapture(event.pointerId);
+    });
+
+    card.addEventListener("pointermove", (event) => {
+      if (!activeDrag || activeDrag.card !== card || activeDrag.pointerId !== event.pointerId) return;
+
+      const deltaX = event.clientX - activeDrag.startX;
+      const deltaY = event.clientY - activeDrag.startY;
+      const distance = Math.hypot(deltaX, deltaY);
+
+      if (!activeDrag.moved && distance < dragThreshold) return;
+
+      activeDrag.moved = true;
+      card.classList.add("is-dragging");
+      card.dataset.dragged = "true";
+      setCardOffset(card, activeDrag.x + deltaX, activeDrag.y + deltaY);
+      event.preventDefault();
+    });
+
+    const endDrag = (event) => {
+      if (!activeDrag || activeDrag.card !== card || activeDrag.pointerId !== event.pointerId) return;
+
+      if (activeDrag.moved) {
+        card.dataset.dragged = "true";
+        window.setTimeout(() => {
+          card.dataset.dragged = "false";
+        }, 0);
+      }
+
+      card.classList.remove("is-dragging");
+      activeDrag = null;
+    };
+
+    card.addEventListener("pointerup", endDrag);
+    card.addEventListener("pointercancel", endDrag);
+  });
+};
+
 renderProjectIndex();
 createProjectNodeLayer();
+enableProjectDragging();
 
 document.querySelectorAll(".project-card").forEach((card) => {
   card.querySelector(".project-link").addEventListener("click", (event) => {
     event.preventDefault();
+    if (card.dataset.dragged === "true") return;
     openProject(card);
   });
 });

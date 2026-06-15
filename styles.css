@@ -117,27 +117,47 @@ dt {
 }
 
 .project-card {
+  --drag-x: 0px;
+  --drag-y: 0px;
+  --stagger-x: 0px;
+  --stagger-y: 0px;
   position: relative;
   z-index: 1;
   display: block;
   width: auto;
+  cursor: grab;
+  transform: translate(
+    calc(var(--stagger-x) + var(--drag-x)),
+    calc(var(--stagger-y) + var(--drag-y))
+  );
+  transition: filter 180ms ease;
+  user-select: none;
+  will-change: transform;
+}
+
+.project-card.is-dragging {
+  z-index: 8;
+  cursor: grabbing;
+  filter: drop-shadow(0 14px 24px rgba(17, 17, 17, 0.12));
 }
 
 /* Alternate top/bottom rows and add organic exaggerated stagger (disorder) */
 .project-card:nth-of-type(4n + 1) {
-  transform: translateY(4vh);
+  --stagger-y: 4vh;
 }
 
 .project-card:nth-of-type(4n + 2) {
-  transform: translate(50px, -5vh);
+  --stagger-x: 50px;
+  --stagger-y: -5vh;
 }
 
 .project-card:nth-of-type(4n + 3) {
-  transform: translateY(-4vh);
+  --stagger-y: -4vh;
 }
 
 .project-card:nth-of-type(4n) {
-  transform: translate(50px, 5vh);
+  --stagger-x: 50px;
+  --stagger-y: 5vh;
 }
 
 .project-link {
@@ -149,7 +169,9 @@ dt {
   border: 0;
   background: transparent;
   text-align: center;
+  -webkit-user-drag: none;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  touch-action: pan-y;
 }
 
 .project-link:hover {
@@ -550,8 +572,9 @@ dt {
   }
 
   .project-card {
+    --stagger-x: 0px;
+    --stagger-y: 0px;
     width: 100%;
-    transform: none !important;
   }
 
   .loop-image {
