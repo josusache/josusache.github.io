@@ -157,27 +157,6 @@ const projectData = {
       ["wide", "assets/images/DOJO_%20(7).jpg"],
     ],
   },
-  portrait: {
-    title: "Portrait",
-    kind: "Photo",
-    year: "2024",
-    cover: "assets/videos/PORTRAIT.webp",
-    restartMs: 5600,
-    copy:
-      "Serie de retrato centrada en presencia, gesto y una construccion visual limpia.",
-    role: "Photography, edit",
-    format: "Photo series",
-    status: "Selected work",
-    images: [
-      ["wide", "assets/images/PORTRAIT_%20(1).jpg"],
-      ["wide", "assets/images/PORTRAIT_%20(2).jpg"],
-      ["wide", "assets/images/PORTRAIT_%20(3).jpg"],
-      ["wide", "assets/images/PORTRAIT_%20(4).jpg"],
-      ["wide", "assets/images/PORTRAIT_%20(6).jpg"],
-      ["wide", "assets/images/PORTRAIT_%20(7).jpg"],
-      ["wide", "assets/images/PORTRAIT_%20(8).jpg"],
-    ],
-  },
   chaosDimensions: {
     title: "Chaos Dimensions",
     kind: "Videoclip",
